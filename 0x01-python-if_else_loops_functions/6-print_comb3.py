@@ -1,4 +1,7 @@
 #!/usr/bin/python3
-for tens in range(10):
-    for unit in range(tens + 1, 10):
-        print("{}{}".format(tens, unit), end=(', ' if (tens * 10) + unit < 89 else '\n'))
+comb = 0
+while comb <= 89:
+    if comb % 10 == 0:
+        comb += 1 + comb // 10
+    print("{:02d}".format(comb), end='\n' if comb == 89 else ", ")
+    comb += 1
