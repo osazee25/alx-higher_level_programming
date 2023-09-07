@@ -2,7 +2,7 @@
 def sum_arg(argv):
     x = len(argv) - 1
     if x == 0:
-        print("{:d} argument".format(x))
+        print("{:d}".format(x))
         return
     else:
         j = 1
