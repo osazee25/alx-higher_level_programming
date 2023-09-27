@@ -1,699 +1,396 @@
+Background Context
+OOP is a totally new concept for all of you (especially those who think they know about it :)). It’s VERY important that you read at least all the material that is listed bellow (and skip what we recommend you to skip, you will see them later in the curriculum).
+
+As usual, make sure you type (never copy and paste), test, understand all examples shown in the following links (including those in the video), test again etc. The biggest and most important takeaway of this project is: experiment by yourself OOP, play with it!
+
+Read or watch the below resources in the order presented.
+
+Resources
+Read or watch:
+
+Object Oriented Programming (Read everything until the paragraph “Inheritance” excluded. You do NOT have to learn about class attributes, classmethod and staticmethod yet)
+Object-Oriented Programming (Please *be careful*: in most of the following paragraphs, the author shows things the way you should not use or write a class in order to help you better understand some concepts and how everything works in Python 3. Make sure you read everything in the following paragraphs: General Introduction, First-class Everything, A Minimal Class in Python, Attributes (You DON’T have to learn about class attributes), Methods, The __init__ Method, “Data Abstraction, Data Encapsulation, and Information Hiding,” “Public, Protected, and Private Attributes”)
+Properties vs. Getters and Setters
+Learn to Program 9 : Object Oriented Programming
+Python Classes and Objects
+Object Oriented Programming
+Learning Objectives
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+
+General
+Why Python programming is awesome
+What is OOP
+“first-class everything”
+What is a class
+What is an object and an instance
+What is the difference between a class and an object or instance
+What is an attribute
+What are and how to use public, protected and private attributes
+What is self
+What is a method
+What is the special __init__ method and how to use it
+What is Data Abstraction, Data Encapsulation, and Information Hiding
+What is a property
+What is the difference between an attribute and a property in Python
+What is the Pythonic way to write getters and setters in Python
+How to dynamically create arbitrary new attributes for existing instances of a class
+How to bind attributes to object and classes
+What is the __dict__ of a class and/or instance of a class and what does it contain
+How does Python find the attributes of an object or class
+How to use the getattr function
+Copyright - Plagiarism
+You are tasked to come up with solutions for the tasks below yourself to meet with the above learning objectives.
+You will not be able to meet the objectives of this or any following project by copying and pasting someone else’s work.
+You are not allowed to publish any content of this project.
+Any form of plagiarism is strictly forbidden and will result in removal from the program.
+Requirements
+General
+Allowed editors: vi, vim, emacs
+All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
+All your files should end with a new line
+The first line of all your files should be exactly #!/usr/bin/python3
+A README.md file, at the root of the folder of the project, is mandatory
+Your code should use the pycodestyle (version 2.8.*)
+All your files must be executable
+The length of your files will be tested using wc
+All your modules should have a documentation (python3 -c 'print(__import__("my_module").__doc__)')
+All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
+All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
+A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
+More Info
+Documentation is now mandatory! Each module, class, and method must contain docstring as comments. Example Google Style Python Docstrings
+
+Quiz questions
+Great! You've completed the quiz successfully! Keep going! (Show quiz)
 Tasks
-0. Squared simple
+0. My first square
 mandatory
-Write a function that computes the square value of all integers of a matrix.
+Write an empty class Square that defines a square:
 
-Prototype: def square_matrix_simple(matrix=[]):
-matrix is a 2 dimensional array
-Returns a new matrix:
-Same size as matrix
-Each value should be the square of the value of the input
-Initial matrix should not be modified
 You are not allowed to import any module
-You are allowed to use regular loops, map, etc.
-guillaume@ubuntu:~/0x04$ cat 0-main.py
+guillaume@ubuntu:~/0x06$ cat 0-main.py
 #!/usr/bin/python3
-square_matrix_simple = __import__('0-square_matrix_simple').square_matrix_simple
+Square = __import__('0-square').Square
 
-matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-]
+my_square = Square()
+print(type(my_square))
+print(my_square.__dict__)
 
-new_matrix = square_matrix_simple(matrix)
-print(new_matrix)
-print(matrix)
-
-guillaume@ubuntu:~/0x04$ ./0-main.py
-[[1, 4, 9], [16, 25, 36], [49, 64, 81]]
-[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-guillaume@ubuntu:~/0x04$ 
+guillaume@ubuntu:~/0x06$ ./0-main.py
+<class '0-square.Square'>
+{}
+guillaume@ubuntu:~/0x06$ 
 Repo:
 
 GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 0-square_matrix_simple.py
+Directory: 0x06-python-classes
+File: 0-square.py
    
-1. Search and replace
+1. Square with size
 mandatory
-Write a function that replaces all occurrences of an element by another in a new list.
+Write a class Square that defines a square by: (based on 0-square.py)
 
-Prototype: def search_replace(my_list, search, replace):
-my_list is the initial list
-search is the element to replace in the list
-replace is the new element
+Private instance attribute: size
+Instantiation with size (no type/value verification)
 You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 1-main.py
+Why?
+
+Why size is private attribute?
+
+The size of a square is crucial for a square, many things depend of it (area computation, etc.), so you, as class builder, must control the type and value of this attribute. One way to have the control is to keep it privately. You will see in next tasks how to get, update and validate the size value.
+
+guillaume@ubuntu:~/0x06$ cat 1-main.py
 #!/usr/bin/python3
-search_replace = __import__('1-search_replace').search_replace
+Square = __import__('1-square').Square
 
-my_list = [1, 2, 3, 4, 5, 4, 2, 1, 1, 4, 89]
-new_list = search_replace(my_list, 2, 89)
+my_square = Square(3)
+print(type(my_square))
+print(my_square.__dict__)
 
-print(new_list)
-print(my_list)
+try:
+    print(my_square.size)
+except Exception as e:
+    print(e)
 
-guillaume@ubuntu:~/0x04$ ./1-main.py
-[1, 89, 3, 4, 5, 4, 89, 1, 1, 4, 89]
-[1, 2, 3, 4, 5, 4, 2, 1, 1, 4, 89]
-guillaume@ubuntu:~/0x04$ 
+try:
+    print(my_square.__size)
+except Exception as e:
+    print(e)
+
+guillaume@ubuntu:~/0x06$ ./1-main.py
+<class '1-square.Square'>
+{'_Square__size': 3}
+'Square' object has no attribute 'size'
+'Square' object has no attribute '__size'
+guillaume@ubuntu:~/0x06$ 
 Repo:
 
 GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 1-search_replace.py
+Directory: 0x06-python-classes
+File: 1-square.py
    
-2. Unique addition
+2. Size validation
 mandatory
-Write a function that adds all unique integers in a list (only once for each integer).
+Write a class Square that defines a square by: (based on 1-square.py)
 
-Prototype: def uniq_add(my_list=[]):
+Private instance attribute: size
+Instantiation with optional size: def __init__(self, size=0):
+size must be an integer, otherwise raise a TypeError exception with the message size must be an integer
+if size is less than 0, raise a ValueError exception with the message size must be >= 0
 You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 2-main.py
+guillaume@ubuntu:~/0x06$ cat 2-main.py
 #!/usr/bin/python3
-uniq_add = __import__('2-uniq_add').uniq_add
+Square = __import__('2-square').Square
 
-my_list = [1, 2, 3, 1, 4, 2, 5]
-result = uniq_add(my_list)
-print("Result: {:d}".format(result))
+my_square_1 = Square(3)
+print(type(my_square_1))
+print(my_square_1.__dict__)
 
-guillaume@ubuntu:~/0x04$ ./2-main.py
-Result: 15
-guillaume@ubuntu:~/0x04$ 
+my_square_2 = Square()
+print(type(my_square_2))
+print(my_square_2.__dict__)
+
+try:
+    print(my_square_1.size)
+except Exception as e:
+    print(e)
+
+try:
+    print(my_square_1.__size)
+except Exception as e:
+    print(e)
+
+try:
+    my_square_3 = Square("3")
+    print(type(my_square_3))
+    print(my_square_3.__dict__)
+except Exception as e:
+    print(e)
+
+try:
+    my_square_4 = Square(-89)
+    print(type(my_square_4))
+    print(my_square_4.__dict__)
+except Exception as e:
+    print(e)
+
+guillaume@ubuntu:~/0x06$ ./2-main.py
+<class '2-square.Square'>
+{'_Square__size': 3}
+<class '2-square.Square'>
+{'_Square__size': 0}
+'Square' object has no attribute 'size'
+'Square' object has no attribute '__size'
+size must be an integer
+size must be >= 0
+guillaume@ubuntu:~/0x06$ 
 Repo:
 
 GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 2-uniq_add.py
+Directory: 0x06-python-classes
+File: 2-square.py
    
-3. Present in both
+3. Area of a square
 mandatory
-Write a function that returns a set of common elements in two sets.
+Write a class Square that defines a square by: (based on 2-square.py)
 
-Prototype: def common_elements(set_1, set_2):
+Private instance attribute: size
+Instantiation with optional size: def __init__(self, size=0):
+size must be an integer, otherwise raise a TypeError exception with the message size must be an integer
+if size is less than 0, raise a ValueError exception with the message size must be >= 0
+Public instance method: def area(self): that returns the current square area
 You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 3-main.py
+guillaume@ubuntu:~/0x06$ cat 3-main.py
 #!/usr/bin/python3
-common_elements = __import__('3-common_elements').common_elements
+Square = __import__('3-square').Square
 
-set_1 = { "Python", "C", "Javascript" }
-set_2 = { "Bash", "C", "Ruby", "Perl" }
-c_set = common_elements(set_1, set_2)
-print(sorted(list(c_set)))
+my_square_1 = Square(3)
+print("Area: {}".format(my_square_1.area()))
 
-guillaume@ubuntu:~/0x04$ ./3-main.py
-['C']
-guillaume@ubuntu:~/0x04$ 
+try:
+    print(my_square_1.size)
+except Exception as e:
+    print(e)
+
+try:
+    print(my_square_1.__size)
+except Exception as e:
+    print(e)
+
+my_square_2 = Square(5)
+print("Area: {}".format(my_square_2.area()))
+
+guillaume@ubuntu:~/0x06$ ./3-main.py
+Area: 9
+'Square' object has no attribute 'size'
+'Square' object has no attribute '__size'
+Area: 25
+guillaume@ubuntu:~/0x06$ 
 Repo:
 
 GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 3-common_elements.py
+Directory: 0x06-python-classes
+File: 3-square.py
    
-4. Only differents
+4. Access and update private attribute
 mandatory
-Write a function that returns a set of all elements present in only one set.
+Write a class Square that defines a square by: (based on 3-square.py)
 
-Prototype: def only_diff_elements(set_1, set_2):
+Private instance attribute: size:
+property def size(self): to retrieve it
+property setter def size(self, value): to set it:
+size must be an integer, otherwise raise a TypeError exception with the message size must be an integer
+if size is less than 0, raise a ValueError exception with the message size must be >= 0
+Instantiation with optional size: def __init__(self, size=0):
+Public instance method: def area(self): that returns the current square area
 You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 4-main.py
+Why?
+
+Why a getter and setter?
+
+Reminder: size is a private attribute. We did that to make sure we control the type and value. Getter and setter methods are not 100% Python, but more OOP. With them, you will be able to validate the assignment of a private attribute and also define how getting the attribute value will be available from outside - by copy? by assignment? etc. Also, adding type/value validation in the setter will centralize the logic, since you will do it in only one place.
+
+guillaume@ubuntu:~/0x06$ cat 4-main.py
 #!/usr/bin/python3
-only_diff_elements = __import__('4-only_diff_elements').only_diff_elements
+Square = __import__('4-square').Square
 
-set_1 = { "Python", "C", "Javascript" }
-set_2 = { "Bash", "C", "Ruby", "Perl" }
-od_set = only_diff_elements(set_1, set_2)
-print(sorted(list(od_set)))
+my_square = Square(89)
+print("Area: {} for size: {}".format(my_square.area(), my_square.size))
 
-guillaume@ubuntu:~/0x04$ ./4-main.py
-['Bash', 'Javascript', 'Perl', 'Python', 'Ruby']
-guillaume@ubuntu:~/0x04$ 
+my_square.size = 3
+print("Area: {} for size: {}".format(my_square.area(), my_square.size))
+
+try:
+    my_square.size = "5 feet"
+    print("Area: {} for size: {}".format(my_square.area(), my_square.size))
+except Exception as e:
+    print(e)
+
+guillaume@ubuntu:~/0x06$ ./4-main.py
+Area: 7921 for size: 89
+Area: 9 for size: 3
+size must be an integer
+guillaume@ubuntu:~/0x06$ 
 Repo:
 
 GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 4-only_diff_elements.py
+Directory: 0x06-python-classes
+File: 4-square.py
    
-5. Number of keys
+5. Printing a square
 mandatory
-Write a function that returns the number of keys in a dictionary.
+Write a class Square that defines a square by: (based on 4-square.py)
 
-Prototype: def number_keys(a_dictionary):
+Private instance attribute: size:
+property def size(self): to retrieve it
+property setter def size(self, value): to set it:
+size must be an integer, otherwise raise a TypeError exception with the message size must be an integer
+if size is less than 0, raise a ValueError exception with the message size must be >= 0
+Instantiation with optional size: def __init__(self, size=0):
+Public instance method: def area(self): that returns the current square area
+Public instance method: def my_print(self): that prints in stdout the square with the character #:
+if size is equal to 0, print an empty line
 You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 5-main.py
+guillaume@ubuntu:~/0x06$ cat 5-main.py
 #!/usr/bin/python3
-number_keys = __import__('5-number_keys').number_keys
+Square = __import__('5-square').Square
 
-a_dictionary = { 'language': "C", 'number': 13, 'track': "Low level" }
-nb_keys = number_keys(a_dictionary)
-print("Number of keys: {:d}".format(nb_keys))
-
-guillaume@ubuntu:~/0x04$ ./5-main.py
-Number of keys: 3
-guillaume@ubuntu:~/0x04$ 
-Repo:
-
-GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 5-number_keys.py
-   
-6. Print sorted dictionary
-mandatory
-Write a function that prints a dictionary by ordered keys.
-
-Prototype: def print_sorted_dictionary(a_dictionary):
-You can assume that all keys are strings
-Keys should be sorted by alphabetic order
-Only sort keys of the first level (don’t sort keys of a dictionary inside the main dictionary)
-Dictionary values can have any type
-You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 6-main.py
-#!/usr/bin/python3
-print_sorted_dictionary = __import__('6-print_sorted_dictionary').print_sorted_dictionary
-
-a_dictionary = { 'language': "C", 'Number': 89, 'track': "Low level", 'ids': [1, 2, 3] }
-print_sorted_dictionary(a_dictionary)
-
-guillaume@ubuntu:~/0x04$ ./6-main.py
-Number: 89
-ids: [1, 2, 3]
-language: C
-track: Low level
-guillaume@ubuntu:~/0x04$ 
-Repo:
-
-GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 6-print_sorted_dictionary.py
-   
-7. Update dictionary
-mandatory
-Write a function that replaces or adds key/value in a dictionary.
-
-Prototype: def update_dictionary(a_dictionary, key, value):
-key argument will be always a string
-value argument will be any type
-If a key exists in the dictionary, the value will be replaced
-If a key doesn’t exist in the dictionary, it will be created
-You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 7-main.py
-#!/usr/bin/python3
-update_dictionary = __import__('7-update_dictionary').update_dictionary
-print_sorted_dictionary = __import__('6-print_sorted_dictionary').print_sorted_dictionary
-
-a_dictionary = { 'language': "C", 'number': 89, 'track': "Low level" }
-new_dict = update_dictionary(a_dictionary, 'language', "Python")
-print_sorted_dictionary(new_dict)
-print("--")
-print_sorted_dictionary(a_dictionary)
-
-print("--")
-print("--")
-
-new_dict = update_dictionary(a_dictionary, 'city', "San Francisco")
-print_sorted_dictionary(new_dict)
-print("--")
-print_sorted_dictionary(a_dictionary)
-
-guillaume@ubuntu:~/0x04$ ./7-main.py
-language: Python
-number: 89
-track: Low level
---
-language: Python
-number: 89
-track: Low level
---
---
-city: San Francisco
-language: Python
-number: 89
-track: Low level
---
-city: San Francisco
-language: Python
-number: 89
-track: Low level
-guillaume@ubuntu:~/0x04$ 
-Repo:
-
-GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 7-update_dictionary.py
-   
-8. Simple delete by key
-mandatory
-Write a function that deletes a key in a dictionary.
-
-Prototype: def simple_delete(a_dictionary, key=""):
-key argument will be always a string
-If a key doesn’t exist, the dictionary won’t change
-You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 8-main.py
-#!/usr/bin/python3
-simple_delete = __import__('8-simple_delete').simple_delete
-print_sorted_dictionary = \
-    __import__('6-print_sorted_dictionary').print_sorted_dictionary
-
-a_dictionary = { 'language': "C", 'Number': 89, 'track': "Low", 'ids': [1, 2, 3] }
-new_dict = simple_delete(a_dictionary, 'track')
-print_sorted_dictionary(a_dictionary)
-print("--")
-print_sorted_dictionary(new_dict)
+my_square = Square(3)
+my_square.my_print()
 
 print("--")
-print("--")
-new_dict = simple_delete(a_dictionary, 'c_is_fun')
-print_sorted_dictionary(a_dictionary)
-print("--")
-print_sorted_dictionary(new_dict)
 
-guillaume@ubuntu:~/0x04$ ./8-main.py
-Number: 89
-ids: [1, 2, 3]
-language: C
+my_square.size = 10
+my_square.my_print()
+
+print("--")
+
+my_square.size = 0
+my_square.my_print()
+
+print("--")
+
+guillaume@ubuntu:~/0x06$ ./5-main.py
+###
+###
+###
 --
-Number: 89
-ids: [1, 2, 3]
-language: C
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
 --
+
 --
-Number: 89
-ids: [1, 2, 3]
-language: C
---
-Number: 89
-ids: [1, 2, 3]
-language: C
-guillaume@ubuntu:~/0x04$ 
+guillaume@ubuntu:~/0x06$ 
 Repo:
 
 GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 8-simple_delete.py
+Directory: 0x06-python-classes
+File: 5-square.py
    
-9. Multiply by 2
+6. Coordinates of a square
 mandatory
-Write a function that returns a new dictionary with all values multiplied by 2
+Write a class Square that defines a square by: (based on 5-square.py)
 
-Prototype: def multiply_by_2(a_dictionary):
-You can assume that all values are only integers
-Returns a new dictionary
+Private instance attribute: size:
+property def size(self): to retrieve it
+property setter def size(self, value): to set it:
+size must be an integer, otherwise raise a TypeError exception with the message size must be an integer
+if size is less than 0, raise a ValueError exception with the message size must be >= 0
+Private instance attribute: position:
+property def position(self): to retrieve it
+property setter def position(self, value): to set it:
+position must be a tuple of 2 positive integers, otherwise raise a TypeError exception with the message position must be a tuple of 2 positive integers
+Instantiation with optional size and optional position: def __init__(self, size=0, position=(0, 0)):
+Public instance method: def area(self): that returns the current square area
+Public instance method: def my_print(self): that prints in stdout the square with the character #:
+if size is equal to 0, print an empty line
+position should be use by using space - Don’t fill lines by spaces when position[1] > 0
 You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 9-main.py
+guillaume@ubuntu:~/0x06$ cat 6-main.py
 #!/usr/bin/python3
-multiply_by_2 = __import__('9-multiply_by_2').multiply_by_2
-print_sorted_dictionary = \
-    __import__('6-print_sorted_dictionary').print_sorted_dictionary
+Square = __import__('6-square').Square
 
-a_dictionary = {'John': 12, 'Alex': 8, 'Bob': 14, 'Mike': 14, 'Molly': 16}
-new_dict = multiply_by_2(a_dictionary)
-print_sorted_dictionary(a_dictionary)
-print("--")
-print_sorted_dictionary(new_dict)
-
-guillaume@ubuntu:~/0x04$ ./9-main.py
-Alex: 8
-Bob: 14
-John: 12
-Mike: 14
-Molly: 16
---
-Alex: 16
-Bob: 28
-John: 24
-Mike: 28
-Molly: 32
-guillaume@ubuntu:~/0x04$ 
-Repo:
-
-GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 9-multiply_by_2.py
-   
-10. Best score
-mandatory
-Write a function that returns a key with the biggest integer value.
-
-Prototype: def best_score(a_dictionary):
-You can assume that all values are only integers
-If no score found, return None
-You can assume all students have a different score
-You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 10-main.py
-#!/usr/bin/python3
-best_score = __import__('10-best_score').best_score
-
-a_dictionary = {'John': 12, 'Bob': 14, 'Mike': 14, 'Molly': 16, 'Adam': 10}
-best_key = best_score(a_dictionary)
-print("Best score: {}".format(best_key))
-
-best_key = best_score(None)
-print("Best score: {}".format(best_key))
-
-guillaume@ubuntu:~/0x04$ ./10-main.py
-Best score: Molly
-Best score: None
-guillaume@ubuntu:~/0x04$ 
-Repo:
-
-GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 10-best_score.py
-   
-11. Multiply by using map
-mandatory
-Write a function that returns a list with all values multiplied by a number without using any loops.
-
-Prototype: def multiply_list_map(my_list=[], number=0):
-Returns a new list:
-Same length as my_list
-Each value should be multiplied by number
-Initial list should not be modified
-You are not allowed to import any module
-You have to use map
-Your file should be max 3 lines
-guillaume@ubuntu:~/0x04$ cat 11-main.py
-#!/usr/bin/python3
-multiply_list_map = __import__('11-multiply_list_map').multiply_list_map
-
-my_list = [1, 2, 3, 4, 6]
-new_list = multiply_list_map(my_list, 4)
-print(new_list)
-print(my_list)
-
-guillaume@ubuntu:~/0x04$ ./11-main.py
-[4, 8, 12, 16, 24]
-[1, 2, 3, 4, 6]
-guillaume@ubuntu:~/0x04$ 
-Repo:
-
-GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 11-multiply_list_map.py
-   
-12. Roman to Integer
-mandatory
-Technical interview preparation:
-
-You are not allowed to google anything
-Whiteboard first
-Create a function def roman_to_int(roman_string): that converts a Roman numeral to an integer.
-
-You can assume the number will be between 1 to 3999.
-def roman_to_int(roman_string) must return an integer
-If the roman_string is not a string or None, return 0
-guillaume@ubuntu:~/0x04$ cat 12-main.py
-#!/usr/bin/python3
-""" Roman to Integer test file
-"""
-roman_to_int = __import__('12-roman_to_int').roman_to_int
-
-roman_number = "X"
-print("{} = {}".format(roman_number, roman_to_int(roman_number)))
-
-roman_number = "VII"
-print("{} = {}".format(roman_number, roman_to_int(roman_number)))
-
-roman_number = "IX"
-print("{} = {}".format(roman_number, roman_to_int(roman_number)))
-
-roman_number = "LXXXVII"
-print("{} = {}".format(roman_number, roman_to_int(roman_number)))
-
-roman_number = "DCCVII"
-print("{} = {}".format(roman_number, roman_to_int(roman_number)))
-
-guillaume@ubuntu:~/0x04$ ./12-main.py
-X = 10
-VII = 7
-IX = 9
-LXXXVII = 87
-DCCVII = 707
-guillaume@ubuntu:~/0x04$ 
-Repo:
-
-GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 12-roman_to_int.py
-   
-13. Weighted average!
-#advanced
-Write a function that returns the weighted average of all integers tuple (<score>, <weight>)
-
-Prototype: def weight_average(my_list=[]):
-Returns 0 if the list is empty
-You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 100-main.py
-#!/usr/bin/python3
-weight_average = __import__('100-weight_average').weight_average
-
-my_list = [(1, 2), (2, 1), (3, 10), (4, 2)]
-# = ((1 * 2) + (2 * 1) + (3 * 10) + (4 * 2)) / (2 + 1 + 10 + 2)
-result = weight_average(my_list)
-print("Average: {:0.2f}".format(result))
-
-guillaume@ubuntu:~/0x04$ ./100-main.py
-Average: 2.80
-guillaume@ubuntu:~/0x04$ 
-Repo:
-
-GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 100-weight_average.py
-   
-14. Squared by using map
-#advanced
-Write a function that computes the square value of all integers of a matrix using map
-
-Prototype: def square_matrix_map(matrix=[]):
-matrix is a 2 dimensional array
-Returns a new matrix:
-Same size as matrix
-Each value should be the square of the value of the input
-Initial matrix should not be modified
-You are not allowed to import any module
-You have to use map
-You are not allowed to use for or while
-Your file should be max 3 lines
-guillaume@ubuntu:~/0x04$ cat 101-main.py
-#!/usr/bin/python3
-square_matrix_map = \
-    __import__('101-square_matrix_map').square_matrix_map
-
-matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-]
-
-new_matrix = square_matrix_map(matrix)
-print(new_matrix)
-print(matrix)
-
-guillaume@ubuntu:~/0x04$ ./101-main.py
-[[1, 4, 9], [16, 25, 36], [49, 64, 81]]
-[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-guillaume@ubuntu:~/0x04$ 
-Repo:
-
-GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 101-square_matrix_map.py
-   
-15. Delete by value
-#advanced
-Write a function that deletes keys with a specific value in a dictionary.
-
-Prototype: def complex_delete(a_dictionary, value):
-If the value doesn’t exist, the dictionary won’t change
-All keys having the searched value have to be deleted
-You are not allowed to import any module
-guillaume@ubuntu:~/0x04$ cat 102-main.py
-#!/usr/bin/python3
-complex_delete = __import__('102-complex_delete').complex_delete
-print_sorted_dictionary = \
-    __import__('6-print_sorted_dictionary').print_sorted_dictionary
-
-a_dictionary = {'lang': "C", 'track': "Low", 'pref': "C", 'ids': [1, 2, 3]}
-new_dict = complex_delete(a_dictionary, 'C')
-print_sorted_dictionary(a_dictionary)
-print("--")
-print_sorted_dictionary(new_dict)
+my_square_1 = Square(3)
+my_square_1.my_print()
 
 print("--")
-print("--")
-new_dict = complex_delete(a_dictionary, 'c_is_fun')
-print_sorted_dictionary(a_dictionary)
-print("--")
-print_sorted_dictionary(new_dict)
 
-guillaume@ubuntu:~/0x04$ ./102-main.py
-ids: [1, 2, 3]
-track: Low
---
-ids: [1, 2, 3]
-track: Low
---
---
-ids: [1, 2, 3]
-track: Low
---
-ids: [1, 2, 3]
-track: Low
-guillaume@ubuntu:~/0x04$ 
+my_square_2 = Square(3, (1, 1))
+my_square_2.my_print()
+
+print("--")
+
+my_square_3 = Square(3, (3, 0))
+my_square_3.my_print()
+
+print("--")
+
+guillaume@ubuntu:~/0x06$ ./6-main.py | tr " " "_" | cat -e
+###$
+###$
+###$
+--$
+$
+_###$
+_###$
+_###$
+--$
+___###$
+___###$
+___###$
+--$
+guillaume@ubuntu:~/0x06$ 
 Repo:
 
 GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 102-complex_delete.py
+Directory: 0x06-python-classes
+File: 6-square.py
    
-16. CPython #1: PyBytesObject
-#advanced
-Create two C functions that print some basic info about Python lists and Python bytes objects.
-
-
-Python lists:
-
-Prototype: void print_python_list(PyObject *p);
-Format: see example
-Python bytes:
-
-Prototype: void print_python_bytes(PyObject *p);
-Format: see example
-Line “first X bytes”: print a maximum of 10 bytes
-If p is not a valid PyBytesObject, print an error message (see example)
-Read /usr/include/python3.4/bytesobject.h
-About:
-
-Python version: 3.4
-Your shared library will be compiled with this command line: gcc -Wall -Werror -Wextra -pedantic -std=c99 -shared -Wl,-soname,libPython.so -o libPython.so -fPIC -I/usr/include/python3.4 103-python.c
-You are not allowed to use the following macros/functions:
-Py_SIZE
-Py_TYPE
-PyList_GetItem
-PyBytes_AS_STRING
-PyBytes_GET_SIZE
-julien@ubuntu:~/CPython$ python3 --version
-Python 3.4.3
-julien@ubuntu:~/CPython$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -shared -Wl,-soname,libPython.so -o libPython.so -fPIC -I/usr/include/python3.4 103-python.c
-julien@ubuntu:~/CPython$ cat 103-tests.py 
-import ctypes
-
-lib = ctypes.CDLL('./libPython.so')
-lib.print_python_list.argtypes = [ctypes.py_object]
-lib.print_python_bytes.argtypes = [ctypes.py_object]
-s = b"Hello"
-lib.print_python_bytes(s);
-b = b'\xff\xf8\x00\x00\x00\x00\x00\x00';
-lib.print_python_bytes(b);
-b = b'What does the \'b\' character do in front of a string literal?';
-lib.print_python_bytes(b);
-l = [b'Hello', b'World']
-lib.print_python_list(l)
-del l[1]
-lib.print_python_list(l)
-l = l + [4, 5, 6.0, (9, 8), [9, 8, 1024], b"Holberton", "Betty"]
-lib.print_python_list(l)
-l = []
-lib.print_python_list(l)
-l.append(0)
-lib.print_python_list(l)
-l.append(1)
-l.append(2)
-l.append(3)
-l.append(4)
-lib.print_python_list(l)
-l.pop()
-lib.print_python_list(l)
-l = ["Holberton"]
-lib.print_python_list(l)
-lib.print_python_bytes(l);
-julien@ubuntu:~/CPython$ python3 103-tests.py 
-[.] bytes object info
-  size: 5
-  trying string: Hello
-  first 6 bytes: 48 65 6c 6c 6f 00
-[.] bytes object info
-  size: 8
-  trying string: �
-  first 9 bytes: ff f8 00 00 00 00 00 00 00
-[.] bytes object info
-  size: 60
-  trying string: What does the 'b' character do in front of a string literal?
-  first 10 bytes: 57 68 61 74 20 64 6f 65 73 20
-[*] Python list info
-[*] Size of the Python List = 2
-[*] Allocated = 2
-Element 0: bytes
-[.] bytes object info
-  size: 5
-  trying string: Hello
-  first 6 bytes: 48 65 6c 6c 6f 00
-Element 1: bytes
-[.] bytes object info
-  size: 5
-  trying string: World
-  first 6 bytes: 57 6f 72 6c 64 00
-[*] Python list info
-[*] Size of the Python List = 1
-[*] Allocated = 2
-Element 0: bytes
-[.] bytes object info
-  size: 5
-  trying string: Hello
-  first 6 bytes: 48 65 6c 6c 6f 00
-[*] Python list info
-[*] Size of the Python List = 8
-[*] Allocated = 8
-Element 0: bytes
-[.] bytes object info
-  size: 5
-  trying string: Hello
-  first 6 bytes: 48 65 6c 6c 6f 00
-Element 1: int
-Element 2: int
-Element 3: float
-Element 4: tuple
-Element 5: list
-Element 6: bytes
-[.] bytes object info
-  size: 9
-  trying string: Holberton
-  first 10 bytes: 48 6f 6c 62 65 72 74 6f 6e 00
-Element 7: str
-[*] Python list info
-[*] Size of the Python List = 0
-[*] Allocated = 0
-[*] Python list info
-[*] Size of the Python List = 1
-[*] Allocated = 4
-Element 0: int
-[*] Python list info
-[*] Size of the Python List = 5
-[*] Allocated = 8
-Element 0: int
-Element 1: int
-Element 2: int
-Element 3: int
-Element 4: int
-[*] Python list info
-[*] Size of the Python List = 4
-[*] Allocated = 8
-Element 0: int
-Element 1: int
-Element 2: int
-Element 3: int
-[*] Python list info
-[*] Size of the Python List = 1
-[*] Allocated = 1
-Element 0: str
-[.] bytes object info
-  [ERROR] Invalid Bytes Object
-julien@ubuntu:~/CPython$ 
-Repo:
-
-GitHub repository: alx-higher_level_programming
-Directory: 0x04-python-more_data_structures
-File: 103-python.c
