@@ -84,13 +84,27 @@ class Rectangle(Base):
         return self.height * self.width
 
     def display(self):
-        """Displays the rectangle with height and width value"""
+        """
+    Display the rectangle with '#' characters, accounting for x and y coordinates.
+
+    This method prints the rectangle with dimensions determined by its
+    height and width attributes, and it takes care of the x and y coordinates.
+
+    Returns:
+        None
+    """
+        for y in range(self.y):
+            print()
         for i in range(self.height):
+            for x in range(self.x):
+                print(" ", end="")
             for j in range(self.width):
                 print("#", end="")
-            print('\n', end ="")
+            print()
 
 
     def __str__(self):
         """Overrides the usual __str__ method"""
         return("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height))
+
+
