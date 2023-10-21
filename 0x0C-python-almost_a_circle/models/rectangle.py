@@ -109,27 +109,39 @@ class Rectangle(Base):
 
     def update(self, *args, **kwargs):
     """
-    Update the attributes of the Rectangle.
-
-    This method allows you to update the attributes of the Rectangle
-    using either positional arguments (*args) or keyword arguments (**kwargs).
-
-    Args:
-        *args: Positional arguments in the order (id, width, height, x, y).
-        **kwargs: Keyword arguments with attribute names as keys.
-
-    Returns:
-        None
+    Update the attributes of the Rectangle
     """
-    if args:
-        attributes = ["id", "width", "height", "x", "y"]
-        for i, arg in enumerate(args):
-            if arg is not None:
-                setattr(self, attributes[i], arg)
+    if args and len(args) != 0:
+            a = 0
+            for arg in args:
+                if a == 0:
+                    if arg is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = arg
+                elif a == 1:
+                    self.width = arg
+                elif a == 2:
+                    self.height = arg
+                elif a == 3:
+                    self.x = arg
+                elif a == 4:
+                    self.y = arg
+                a += 1
 
-    if kwargs:
-        for key, value in kwargs.items():
-            if key in ("id", "width", "height", "x", "y") and value is not None:
-                setattr(self, key, value)
-
+        elif kwargs and len(kwargs) != 0:
+            for k, v in kwargs.items():
+                if k == "id":
+                    if v is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = v
+                elif k == "width":
+                    self.width = v
+                elif k == "height":
+                    self.height = v
+                elif k == "x":
+                    self.x = v
+                elif k == "y":
+                    self.y = v
 
