@@ -107,4 +107,29 @@ class Rectangle(Base):
         """Overrides the usual __str__ method"""
         return("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height))
 
+    def update(self, *args, **kwargs):
+    """
+    Update the attributes of the Rectangle.
+
+    This method allows you to update the attributes of the Rectangle
+    using either positional arguments (*args) or keyword arguments (**kwargs).
+
+    Args:
+        *args: Positional arguments in the order (id, width, height, x, y).
+        **kwargs: Keyword arguments with attribute names as keys.
+
+    Returns:
+        None
+    """
+    if args:
+        attributes = ["id", "width", "height", "x", "y"]
+        for i, arg in enumerate(args):
+            if arg is not None:
+                setattr(self, attributes[i], arg)
+
+    if kwargs:
+        for key, value in kwargs.items():
+            if key in ("id", "width", "height", "x", "y") and value is not None:
+                setattr(self, key, value)
+
 
